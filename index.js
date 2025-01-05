@@ -1,3 +1,3 @@
-import { test } from './bst.js';
+import { Tree } from './bst.js';
 
-test();
+let tree = new Tree();

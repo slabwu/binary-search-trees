@@ -1,5 +1,7 @@
-export function test() {
-    console.log('Works!');
+export class Tree {
+    constructor() {
+        this.root;
+    }
 }
 
 class Node {
