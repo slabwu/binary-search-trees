@@ -9,7 +9,7 @@ export class Tree {
         let mid = Math.floor((start + end) / 2);
         let root = new Node(array[mid]);
 
-        root.left =this.buildTree(array, start, mid - 1);
+        root.left = this.buildTree(array, start, mid - 1);
         root.right = this.buildTree(array, mid + 1, end);
 
         return root;
@@ -17,7 +17,23 @@ export class Tree {
 
     create(array) {
         this.root = this.buildTree(array);
+        this.prettyPrint(this.root);
     }
+
+    prettyPrint(node, prefix = "", isLeft = true) {
+        if (node === null) {
+
+          return;
+        }
+        if (node.right !== null) {
+          this.prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+        }
+        console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+        if (node.left !== null) {
+          this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+        }
+      };
+     
 }
 
 class Node {
