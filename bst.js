@@ -17,14 +17,12 @@ export class Tree {
 
     create(array) {
         this.root = this.buildTree(array);
-        this.prettyPrint(this.root);
+        // console.log(this);
+        // this.prettyPrint(this.root);
     }
 
     prettyPrint(node, prefix = "", isLeft = true) {
-        if (node === null) {
-
-          return;
-        }
+        if (node === null) return;
         if (node.right !== null) {
           this.prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
         }
@@ -32,8 +30,24 @@ export class Tree {
         if (node.left !== null) {
           this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
         }
-      };
+    };
+
+    print() {
+        this.prettyPrint(this.root);
+    }
      
+    insert(data, root = this.root) {
+        if (!root) return new Node(data);
+        if (root.data === data) return root;
+
+        if (root.data < data) {
+            root.right = this.insert(data, root.right);
+        } else {
+            root.left = this.insert(data, root.left);
+        }
+        
+        return root;
+    }
 }
 
 class Node {
