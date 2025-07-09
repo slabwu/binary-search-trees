@@ -1,3 +1,5 @@
+import { mergeSort as sort, removeDuplicates } from './helper.js';
+
 export class Tree {
     constructor() {
         this.root;
@@ -16,7 +18,8 @@ export class Tree {
     }
 
     create(array) {
-        this.root = this.buildTree(array);
+        let processedArray = sort(removeDuplicates(array));
+        this.root = this.buildTree(processedArray);
         // console.log(this);
         // this.prettyPrint(this.root);
     }
