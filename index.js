@@ -16,3 +16,4 @@ console.log(`Is balanced?: ${tree.isBalanced()}`);
 tree.rebalance();
 tree.print();
 console.log(`Is balanced?: ${tree.isBalanced()}`);
+

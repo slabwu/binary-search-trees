@@ -50,3 +50,16 @@ export function printSearchAlgorithms(tree) {
     tree.postOrderForEach(value => postOrder.push(value));
     console.log(`Postorder: ${postOrder}`);
 }
+
+export function getRandomNumbers(n, min, max) {
+    let output = [];
+    for (let i = 0; i < n; i++) {
+        output.push(Math.floor(Math.random() * max + min));
+    } 
+    return output;
+}
+
+export function showTree(tree) {
+    tree.print();
+    console.log(`Is balanced?: ${tree.isBalanced()}`);
+}
