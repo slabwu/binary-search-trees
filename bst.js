@@ -1,8 +1,9 @@
 import { mergeSort as sort, removeDuplicates } from './helper.js';
 
 export class Tree {
-    constructor() {
+    constructor(array) {
         this.root;
+        if (array) this.create(array);
     }
 
     buildTree(array, start = 0, end = array.length - 1) {
@@ -176,7 +177,7 @@ export class Tree {
             return leftBalanced && rightBalanced;
         }
     }
-    
+
     rebalance() {
         let array = []
         this.inOrderForEach(value => array.push(value));

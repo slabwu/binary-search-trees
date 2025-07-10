@@ -1,9 +1,8 @@
 import { Tree } from './bst.js';
 import { printSearchAlgorithms } from './helper.js';
 
-let tree = new Tree();
+let tree = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-tree.create([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 tree.insert(11);
 tree.delete(5);
 console.log(tree.find(11));
