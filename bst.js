@@ -176,6 +176,12 @@ export class Tree {
             return leftBalanced && rightBalanced;
         }
     }
+    
+    rebalance() {
+        let array = []
+        this.inOrderForEach(value => array.push(value));
+        this.create(array);
+    }
 }
 
 class Node {

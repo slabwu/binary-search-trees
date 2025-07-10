@@ -13,3 +13,7 @@ printSearchAlgorithms(tree);
 console.log(`Height of 8: ${tree.height(8)}`);
 console.log(`Depth of 11: ${tree.depth(11)}`);
 console.log(`Is balanced?: ${tree.isBalanced()}`);
+
+tree.rebalance();
+tree.print();
+console.log(`Is balanced?: ${tree.isBalanced()}`);
