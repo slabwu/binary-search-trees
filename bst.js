@@ -95,6 +95,21 @@ export class Tree {
         }
         return (tmp)? tmp : false;
     }
+
+    levelOrderForEach(callback) {
+        this.checkCallback(callback);
+        let queue = [this.root];
+        while (queue.length !== 0) {
+            let node = queue.shift();
+            callback(node.data);
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
+        }
+    }
+
+    checkCallback(callback) {
+        if (!callback) throw new Error('Callback is required.');
+    }
 }
 
 class Node {

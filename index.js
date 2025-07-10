@@ -7,3 +7,7 @@ tree.insert(11);
 tree.delete(5);
 console.log(tree.find(11));
 tree.print();
+
+let levelOrder = []
+tree.levelOrderForEach(value => levelOrder.push(value));
+console.log(`Level order: ${levelOrder}`);
