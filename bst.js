@@ -83,6 +83,18 @@ export class Tree {
         }
         return tmp;
     }
+
+    find(data) {
+        let tmp = this.root;
+        while (tmp && tmp.data !== data) {
+            if (tmp.data < data) {
+                tmp = tmp.right;
+            } else {
+                tmp = tmp.left;
+            }
+        }
+        return (tmp)? tmp : false;
+    }
 }
 
 class Node {
