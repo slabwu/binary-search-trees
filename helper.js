@@ -32,3 +32,21 @@ export function mergeSort(array) {
         }
     }
 }
+
+export function printSearchAlgorithms(tree) {
+    let levelOrder = []
+    tree.levelOrderForEach(value => levelOrder.push(value));
+    console.log(`Level order: ${levelOrder}`);
+
+    let preOrder = []
+    tree.preOrderForEach(value => preOrder.push(value));
+    console.log(`Preorder: ${preOrder}`);
+
+    let inOrder = []
+    tree.inOrderForEach(value => inOrder.push(value));
+    console.log(`Inorder: ${inOrder}`);
+
+    let postOrder = []
+    tree.postOrderForEach(value => postOrder.push(value));
+    console.log(`Postorder: ${postOrder}`);
+}

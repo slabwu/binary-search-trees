@@ -1,4 +1,5 @@
 import { Tree } from './bst.js';
+import { printSearchAlgorithms } from './helper.js';
 
 let tree = new Tree();
 
@@ -10,4 +11,4 @@ tree.print();
 
 let levelOrder = []
 tree.levelOrderForEach(value => levelOrder.push(value));
-console.log(`Level order: ${levelOrder}`);
+printSearchAlgorithms(tree);

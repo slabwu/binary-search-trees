@@ -107,6 +107,33 @@ export class Tree {
         }
     }
 
+    preOrderForEach(callback, root = this.root) {
+        this.checkCallback(callback);
+        if (root) {
+            callback(root.data);
+            this.preOrderForEach(callback, root.left);
+            this.preOrderForEach(callback, root.right);
+        }
+    }
+    
+    inOrderForEach(callback, root = this.root) {
+        this.checkCallback(callback);
+        if (root) {
+            this.inOrderForEach(callback, root.left);
+            callback(root.data);
+            this.inOrderForEach(callback, root.right);
+        }
+    }
+
+    postOrderForEach(callback, root = this.root) {
+        this.checkCallback(callback);
+        if (root) {
+            this.postOrderForEach(callback, root.left);
+            this.postOrderForEach(callback, root.right);
+            callback(root.data);
+        }
+    }
+
     checkCallback(callback) {
         if (!callback) throw new Error('Callback is required.');
     }
