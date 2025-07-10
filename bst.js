@@ -137,6 +137,45 @@ export class Tree {
     checkCallback(callback) {
         if (!callback) throw new Error('Callback is required.');
     }
+
+    height(data) {
+        let node = this.find(data);
+        return this.getHeight(node);
+    }
+    
+    getHeight(root) {
+        if (!root) return -1;
+        let left = this.getHeight(root.left);
+        let right = this.getHeight(root.right);
+        return Math.max(left, right) + 1;
+    }
+    
+    depth(data) {
+        let tmp = this.root;
+        let depth = 0;
+        while (tmp && tmp.data !== data) {
+            if (tmp.data < data) {
+                tmp = tmp.right;
+            } else {
+                tmp = tmp.left;
+            }
+            depth++;
+        }
+        return (tmp)? depth : null;
+    }
+
+    isBalanced(root = this.root) {
+        if (!root) return true;
+        let left = this.getHeight(root.left);
+        let right = this.getHeight(root.right);
+        if (Math.abs(left - right) > 1) {
+            return false;
+        } else {
+            let leftBalanced = this.isBalanced(root.left);
+            let rightBalanced = this.isBalanced(root.right);
+            return leftBalanced && rightBalanced;
+        }
+    }
 }
 
 class Node {
