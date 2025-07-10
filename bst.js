@@ -30,7 +30,7 @@ export class Tree {
         if (node.right !== null) {
           this.prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
         }
-        console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+        console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.value}`);
         if (node.left !== null) {
           this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
         }
@@ -40,38 +40,38 @@ export class Tree {
         this.prettyPrint(this.root);
     }
      
-    insert(data, root = this.root) {
-        if (!root) return new Node(data);
-        if (root.data === data) return root;
+    insert(value, root = this.root) {
+        if (!root) return new Node(value);
+        if (root.value === value) return root;
 
-        if (root.data < data) {
-            root.right = this.insert(data, root.right);
+        if (root.value < value) {
+            root.right = this.insert(value, root.right);
         } else {
-            root.left = this.insert(data, root.left);
+            root.left = this.insert(value, root.left);
         }
         
         return root;
     }
 
-    delete(data, root = this.root) {
+    delete(value, root = this.root) {
         if (!root) return root;
-        if (root.data === data) {
+        if (root.value === value) {
             if (!root.left) {
                 return root.right;
             } else if (!root.right) {
                 return root.left;
             } else {
                 let replacement = this.getReplacement(root);
-                root.data = replacement.data;
-                root.right = this.delete(replacement.data, root.right);
+                root.value = replacement.value;
+                root.right = this.delete(replacement.value, root.right);
                 return root;
             }
         }
       
-        if (root.data < data) {
-            root.right = this.delete(data, root.right);
+        if (root.value < value) {
+            root.right = this.delete(value, root.right);
         } else {
-            root.left = this.delete(data, root.left);
+            root.left = this.delete(value, root.left);
         }
         
         return root;
@@ -85,10 +85,10 @@ export class Tree {
         return tmp;
     }
 
-    find(data) {
+    find(value) {
         let tmp = this.root;
-        while (tmp && tmp.data !== data) {
-            if (tmp.data < data) {
+        while (tmp && tmp.value !== value) {
+            if (tmp.value < value) {
                 tmp = tmp.right;
             } else {
                 tmp = tmp.left;
@@ -102,7 +102,7 @@ export class Tree {
         let queue = [this.root];
         while (queue.length !== 0) {
             let node = queue.shift();
-            callback(node.data);
+            callback(node.value);
             if (node.left) queue.push(node.left);
             if (node.right) queue.push(node.right);
         }
@@ -111,7 +111,7 @@ export class Tree {
     preOrderForEach(callback, root = this.root) {
         this.checkCallback(callback);
         if (root) {
-            callback(root.data);
+            callback(root.value);
             this.preOrderForEach(callback, root.left);
             this.preOrderForEach(callback, root.right);
         }
@@ -121,7 +121,7 @@ export class Tree {
         this.checkCallback(callback);
         if (root) {
             this.inOrderForEach(callback, root.left);
-            callback(root.data);
+            callback(root.value);
             this.inOrderForEach(callback, root.right);
         }
     }
@@ -131,7 +131,7 @@ export class Tree {
         if (root) {
             this.postOrderForEach(callback, root.left);
             this.postOrderForEach(callback, root.right);
-            callback(root.data);
+            callback(root.value);
         }
     }
 
@@ -139,8 +139,8 @@ export class Tree {
         if (!callback) throw new Error('Callback is required.');
     }
 
-    height(data) {
-        let node = this.find(data);
+    height(value) {
+        let node = this.find(value);
         return this.getHeight(node);
     }
     
@@ -151,11 +151,11 @@ export class Tree {
         return Math.max(left, right) + 1;
     }
     
-    depth(data) {
+    depth(value) {
         let tmp = this.root;
         let depth = 0;
-        while (tmp && tmp.data !== data) {
-            if (tmp.data < data) {
+        while (tmp && tmp.value !== value) {
+            if (tmp.value < value) {
                 tmp = tmp.right;
             } else {
                 tmp = tmp.left;
@@ -186,8 +186,8 @@ export class Tree {
 }
 
 class Node {
-    constructor(data) {
-        this.data = data;
+    constructor(value) {
+        this.value = value;
         this.left = null;
         this.right = null;
     }
